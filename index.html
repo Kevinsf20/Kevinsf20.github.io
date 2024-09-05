@@ -5,29 +5,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Website</title>
+    <title>Siéntete fit</title>
     <!-- for icons  -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!-- bootstrap  -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- for swiper slider  -->
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!-- fancy box  -->
     <link rel="stylesheet" href="assets/css/jquery.fancybox.min.css">
     <!-- custom css  -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleHome.css">
 </head>
 
+
+
+<script>document.querySelectorAll('.header-menu li > a').forEach(function(menuItem) {
+    menuItem.addEventListener('click', function(e) {
+        const submenu = this.nextElementSibling;
+        if (submenu && submenu.classList.contains('submenu')) {
+            e.preventDefault();
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+    });
+
+    // Mantiene el submenú abierto mientras el mouse está sobre él
+    menuItem.parentElement.addEventListener('mouseleave', function() {
+        const submenu = this.querySelector('.submenu');
+        if (submenu) {
+            submenu.style.display = 'none';
+        }
+    });
+
+    menuItem.parentElement.addEventListener('mouseenter', function() {
+        const submenu = this.querySelector('.submenu');
+        if (submenu) {
+            submenu.style.display = 'block';
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+    const servicios = document.querySelector(".header-menu li.servicios");
+    const submenu = servicios.querySelector(".submenu");
+
+    servicios.addEventListener("click", function(event) {
+        event.preventDefault();
+        const isDisplayed = window.getComputedStyle(submenu).display === "block";
+        submenu.style.display = isDisplayed ? "none" : "block";
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!servicios.contains(event.target) && submenu.style.display === "block") {
+            submenu.style.display = "none";
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const serviceMenuItem = document.querySelector('.header-menu li.servicios > a');
+    const submenu = document.querySelector('.header-menu li.servicios .submenu');
+    
+    serviceMenuItem.addEventListener('click', function(e) {
+        e.preventDefault(); // Previene la navegación predeterminada
+
+        // Alterna la visibilidad del submenú
+        if (submenu.style.maxHeight) {
+            submenu.style.maxHeight = null; // Cierra el submenú
+        } else {
+            submenu.style.maxHeight = submenu.scrollHeight + "px"; // Abre el submenú
+        }
+    });
+});
+
+});
+</script>
 <body class="body-fixed">
     <!-- start of header  -->
-    <header class="site-header">
+    <header class="site-header" style="background-color: white;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header-logo">
                         <a href="index.html">
-                            <img src="logo.png" width="160" height="36" alt="Logo">
+                            <img src="logo.png" class="logo-img" alt="Logo">
                         </a>
                     </div>
                 </div>
@@ -36,438 +101,240 @@
                         <button class="menu-toggle"><span></span><span></span></button>
                         <nav class="header-menu">
                             <ul class="menu food-nav-menu">
-                                <li><a href="#home">Home</a></li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#menu">Menu</a></li>
-                                <li><a href="#gallery">Gallery</a></li>
-                                <li><a href="#blog">Blog</a></li>
-                                <li><a href="#contact">Contact</a></li>
+                                <li class="underline-hover" style="background-color: white;box-shadow: none;"><a href="index.html">Home</a></li>
+                                <li class="underline-hover"><a href="especialistas.html">Especialistas</a></li>
+                                <li class="servicios">
+                                    <a href="javascript:void(0);">Servicios</a>
+                                    <ul class="submenu">
+                                        <li class="underline-hover"><a href="servicios.html#consultoria-nutricional" style="width:121PX">Consultoria nutricional</a></li>
+                                        <li class="underline-hover"><a href="servicios.html#consultoria-psicologia" style="width:121PX">Consejería psicológica</a></li>
+                                        <li class="underline-hover"><a href="servicios.html#consultoria-Entrenamiento" style="width:141PX">Entrenamiento personalizado</a></li>
+                                        <li class="underline-hover"><a href="servicios.html#consultoria-coorporativo" style="width:121PX">Corporativos</a></li>
+                                    </ul>
+                                </li>
+                                <li class="underline-hover"><a href="contacto.html">Contacto</a></li>
                             </ul>
                         </nav>
-                        <div class="header-right">
-                            <form action="#" class="header-search-form for-des">
-                                <input type="search" class="form-input" placeholder="Search Here...">
-                                <button type="submit">
-                                    <i class="uil uil-search"></i>
-                                </button>
-                            </form>
-                            <a href="javascript:void(0)" class="header-btn header-cart">
-                                <i class="uil uil-shopping-bag"></i>
-                                <span class="cart-number">3</span>
-                            </a>
-                            <a href="javascript:void(0)" class="header-btn">
-                                <i class="uil uil-user-md"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </header>
+    
+    
     <!-- header ends  -->
 
     <div id="viewport">
         <div id="js-scroll-content">
-            <section class="main-banner" id="home">
-                <div class="js-parallax-scene">
-                    <div class="banner-shape-1 w-100" data-depth="0.30">
-                        <img src="assets/images/berry.png" alt="">
-                    </div>
-                    <div class="banner-shape-2 w-100" data-depth="0.25">
-                        <img src="assets/images/leaf.png" alt="">
-                    </div>
-                </div>
+            <!-- <section class="main-banner" id="home" >
+               
                 <div class="sec-wp">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="banner-text">
                                     <h1 class="h1-title">
-                                        Welcome to our
-                                        <span>India</span>
-                                        restaurant.
+                                        Siéntete
+                                        <span>Fit</span>
+                                        
                                     </h1>
-                                    <p>This is Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam eius
-                                        vel tempore consectetur nesciunt? Nam eius tenetur recusandae optio aperiam.</p>
+                                    <p>Tu Compañero en el Camino hacia un Bienestar Integral</p>
+                                    
                                     <div class="banner-btn mt-4">
-                                        <a href="#menu" class="sec-btn">Check our Menu</a>
+                                        <a href="#menu" class="sec-btn">Contactanos</a>
                                     </div>
+                                        
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="banner-img-wp">
-                                    <div class="banner-img" style="background-image: url(assets/images/main-b.jpg);">
+                                    <div class="banner-img" style="background-image: url(assets/images/fotogrupal.png);">
                                     </div>
                                 </div>
-                                <div class="banner-img-text mt-4 m-auto">
-                                    <h5 class="h5-title">Sushi</h5>
-                                    <p>this is Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                                </div>
+                  
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> -->
 
-
-            <section class="brands-sec">
+            <section class="fit-banner" id="fit-section">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="brand-title mb-5">
-                                <h5 class="h5-title">Trusted by 70+ companies</h5>
-                            </div>
-                            <div class="brands-row">
-                                <div class="brands-box">
-                                    <img src="assets/images/brands/b1.png" alt="">
-                                </div>
-                                <div class="brands-box">
-                                    <img src="assets/images/brands/b2.png" alt="">
-                                </div>
-                                <div class="brands-box">
-                                    <img src="assets/images/brands/b3.png" alt="">
-                                </div>
-                                <div class="brands-box">
-                                    <img src="assets/images/brands/b4.png" alt="">
-                                </div>
-                                <div class="brands-box">
-                                    <img src="assets/images/brands/b5.png" alt="">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="banner-text custom-banner-text">
+                                <h1>
+                                    <span> En Siéntete Fit Estamos comprometidos con tu bienestar integral</span>
+                                </h1>
+                                <div class="banner-btn mt-4">
+                                    <a href="#menu" class="sec-btn">Contáctanos</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
-            <section class="about-sec section" id="about">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="sec-title text-center mb-5">
-                                <p class="sec-sub-title mb-3">About Us</p>
-                                <h2 class="h2-title">Discover our <span>restaurant story</span></h2>
-                                <div class="sec-title-shape mb-4">
-                                    <img src="assets/images/title-shape.svg" alt="">
+            
+            
+            <!-- <section><div id="viewport">
+                <div id="js-scroll-content">
+                    <section class="main-banner" id="home">
+                        <div class="sec-wp">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <div class="banner-text">
+                                            <h1 class="h1-title">
+                                                Siéntete
+                                                <span>Fit</span>
+                                            </h1>
+                                            <p>Tu Compañero en el Camino hacia un Bienestar Integral</p>
+                                            <div class="banner-btn mt-4">
+                                                <a href="#menu" class="sec-btn">Contáctanos</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 text-center">
+                                        <img src="assets/images/fotogrupal.png" alt="Siéntete Fit" class="service-image img-fluid">
+                                    </div>
                                 </div>
-                                <p>This is Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe dolore at
-                                    aspernatur eveniet temporibus placeat voluptatum quaerat accusamus possimus
-                                    cupiditate, quidem impedit sed libero id perspiciatis esse earum repellat quam.
-                                    Dolore modi temporibus quae possimus accusantium, cum corrupti sed deserunt iusto at
-                                    sapiente nihil sint iste similique soluta dolor! Quod.</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-8 m-auto">
-                            <div class="about-video">
-                                <div class="about-video-img" style="background-image: url(assets/images/about.jpg);">
-                                </div>
-                                <div class="play-btn-wp">
-                                    <a href="assets/images/video.mp4" data-fancybox="video" class="play-btn">
-                                        <i class="uil uil-play"></i>
+                    </section>
+                </div>
+            </div>
+            </section> -->
 
-                                    </a>
-                                    <span>Watch The Recipe</span>
-                                </div>
-                            </div>
+            <section class="services-section" style="font-family: 'Montserrat', sans-serif;">
+                <div class="container-fluid"> <!-- Cambié a container-fluid para eliminar el margen lateral -->
+                    <div class="row no-gutters align-items-center"> <!-- Agregué no-gutters para eliminar espacios entre columnas -->
+                        <div class="col-lg-6 text-left"> <!-- Cambié a text-left para asegurar que el contenido esté alineado a la izquierda -->
+                            <img src="assets/images/Foto grupal1.jpg" alt="Siéntete Fit" class="image-left-aligned">
+                            <!-- <div class="banner-btn mt-4 d-lg-none">
+                                <a href="#menu" class="sec-btn">Contáctanos</a>
+                            </div> -->
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-left position-relative">
+                            <div class="background-image"></div>
+                            <h3 class="services-title" style="font-weight: bold;">Tu Bienestar, Nuestra Misión</h3>
+                            <p class="service-description">Nuestra misión es mejorar tu bienestar integral mediante un enfoque multidisciplinario que combina nutrición, psicología y entrenamiento. Nos dedicamos a apoyarte en cada paso para que alcances tus objetivos, ya sea mejorar tu rendimiento, tratar enfermedades, alcanzar metas estéticas o cuidar tu salud mental.</p>
+                            <p class="service-description">Ofrecemos soluciones personalizadas y basadas en evidencia científica tanto para personas que buscan transformar su vida como para empresas que desean mejorar la salud y productividad de sus empleados.</p>
+                            <p class="service-description">Contáctanos hoy para comenzar tu transformación o impulsar el bienestar de tu equipo con nuestro apoyo integral.</p>
                         </div>
                     </div>
                 </div>
             </section>
-
-            <section style="background-image: url(assets/images/menu-bg.png);"
-                class="our-menu section bg-light repeat-img" id="menu">
-                <div class="sec-wp">
+            
+            <section class="why-choose-us">
+                <section class="book-table section bg-light" style="background-color: #F3F0EB;">
+                    <div class="book-table-shape">
+                        <img src="assets/images/table-leaves-shape.png" alt="">
+                    </div>
+            
+                    <div class="book-table-shape book-table-shape2">
+                        <img src="assets/images/table-leaves-shape.png" alt="">
+                    </div>
                     <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">our menu</p>
-                                    <h2 class="h2-title">wake up early, <span>eat fresh & healthy</span></h2>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/title-shape.svg" alt="">
-                                    </div>
+                        <h2 class="section-title" style="font-weight: bold; margin-right: 0;">¿Por Qué Elegir Nuestros Servicios?</h2>
+                        <p class="section-subtitle" style="margin-left:0px; margin-right: 0;">Un Enfoque Integral, Resultados Reales</p>
+                        <div class="content-wrapper">
+                            <div class="left-side" style="margin-right: 0;">
+                                <div class="idea">
+                                    <h3 style="font-weight: bold; margin-right: 0;">Personalización Total</h3>
+                                    <p style="margin-left:0px; margin-right: 0;">Cada plan que diseñamos está hecho a medida, considerando tus metas, estilo de vida y necesidades individuales o corporativas.</p>
+                                </div>
+                                <div class="idea">
+                                    <h3 style="font-weight: bold; margin-right: 0;">Soporte Multidisciplinario</h3>
+                                    <p style="margin-left:0px; margin-right: 0;">Con el respaldo de nutricionistas, psicólogos y entrenadores, te ofrecemos un cuidado completo y coordinado.</p>
+                                </div>
+                            </div>
+                            <div class="image-center">
+                                <img src="assets/images/fit.png" alt="Imagen de Servicios" style="margin: 0 auto;">
+                            </div>
+                            <div class="right-side" style="margin-right: 0;">
+                                <div class="idea">
+                                    <h3 style="font-weight: bold; margin-right: 0;">Método Basado en Evidencia</h3>
+                                    <p style="margin-left:0px; margin-right: 0;">Nos guiamos por la ciencia para asegurar que cada recomendación y plan tenga el máximo impacto positivo en tu vida.</p>
+                                </div>
+                                <div class="idea">
+                                    <h3 style="font-weight: bold; margin-right: 0;">Transformación Duradera</h3>
+                                    <p style="margin-left:0px; margin-right: 0;">No solo buscamos cambios temporales, sino mejorar tu bienestar a largo plazo con un enfoque holístico.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="menu-tab-wp">
+                    </div>
+                </section>
+            </section>
+            
+            
+
+            <div class="bg-pattern bg-light repeat-img" style="background-image: url(assets/images/blog-pattern-bg.png);">
+                <section class="blog-sec section" id="blog">
+                    <div class="sec-wp">
+                        <div class="container">
                             <div class="row">
-                                <div class="col-lg-12 m-auto">
-                                    <div class="menu-tab text-center">
-                                        <ul class="filters">
-                                            <div class="filter-active"></div>
-                                            <li class="filter" data-filter=".all, .breakfast, .lunch, .dinner">
-                                                <img src="assets/images/menu-1.png" alt="">
-                                                All
-                                            </li>
-                                            <li class="filter" data-filter=".breakfast">
-                                                <img src="assets/images/menu-2.png" alt="">
-                                                Breakfast
-                                            </li>
-                                            <li class="filter" data-filter=".lunch">
-                                                <img src="assets/images/menu-3.png" alt="">
-                                                Lunch
-                                            </li>
-                                            <li class="filter" data-filter=".dinner">
-                                                <img src="assets/images/menu-4.png" alt="">
-                                                Dinner
-                                            </li>
-                                        </ul>
+                                <div class="col-lg-12">
+                                    <div class="sec-title text-center mb-5">
+                                        <h2 class="h2-title" style="font-weight: bold;">Servicios que Ofrecemos</h2>
+                                        <div class="sec-title-shape mb-4">
+                                            <img src="assets/images/title-shape.svg" alt="">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="menu-list-row">
-                            <div class="row g-xxl-5 bydefault_show" id="menu-dish">
-                                <div class="col-lg-4 col-sm-6 dish-box-wp breakfast" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/1.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Fresh Chicken Veggies</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>Rs. 499</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
+                            <!-- Fila de servicios con 4 columnas -->
+                            <div class="row justify-content-center">
+                                <div class="col-lg-3 col-md-6 mb-4">
+                                    <div class="blog-box" style="text-align: center; font-family: 'Montserrat', sans-serif;">
+                                        <div class="blog-img back-img" style="background-image: url(assets/images/blog/img1.png);"></div>
+                                        <div class="blog-text" style="text-align: center;">
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Consultas Nutricionales</a>
+                                            <p style="font-family: 'Montserrat', sans-serif; margin-bottom: 47px;margin-left: 0px;">Planes personalizados para tus objetivos: mejora tu rendimiento deportivo, trata enfermedades, cuida tu alimentación en la gestación, la de tus hijos o alcanza metas estéticas.</p>
+                                            <a href="servicios.html#consultoria-nutricional" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- 2 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp breakfast" data-cat="breakfast">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/2.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            4.3
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Grilled Chicken</h3>
-                                            <p>80 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>1</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>Rs. 359</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
+                                
+                                <div class="col-lg-3 col-md-6 mb-4">
+                                    <div class="blog-box" style="text-align: center;">
+                                        <div class="blog-img back-img" style="background-image: url(assets/images/blog/img2.png);"></div>
+                                        <div class="blog-text" style="text-align: center;">
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Psicología y Bienestar Emocional</a>
+                                            <p style="font-family: 'Montserrat', sans-serif; margin-bottom: 25px;margin-left: 0px;">Apoyo emocional y mental mediante terapias individuales o grupales, con programas para mejorar tu bienestar y manejar el estrés, con especialistas en la materia</p>
+                                            <a href="servicios.html#consultoria-psicologia" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- 3 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp lunch" data-cat="lunch">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/3.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            4
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Panner Noodles</h3>
-                                            <p>100 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>Rs. 149</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
+                                <div class="col-lg-3 col-md-6 mb-4">
+                                    <div class="blog-box" style="text-align: center;">
+                                        <div class="blog-img back-img" style="background-image: url(assets/images/blog/img3.png);"></div>
+                                        <div class="blog-text" style="text-align: center;">
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Programa De Entrenamiento Personalizado</a>
+                                            <p style="font-family: 'Montserrat', sans-serif;margin-bottom: 57px;margin-left: 0px;">Programas físicos que complementan tu plan nutricional, adaptados a tu nivel y objetivos, desde la pérdida de peso hasta la ganancia muscular</p>
+                                            <a href="servicios.html#consultoria-Entrenamiento" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- 4 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp lunch" data-cat="lunch">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/4.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            4.5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Chicken Noodles</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>Rs. 379</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 5 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="dinner">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/5.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Bread Boiled Egg</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Non Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>Rs. 99</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 6 -->
-                                <div class="col-lg-4 col-sm-6 dish-box-wp dinner" data-cat="dinner">
-                                    <div class="dish-box text-center">
-                                        <div class="dist-img">
-                                            <img src="assets/images/dish/6.png" alt="">
-                                        </div>
-                                        <div class="dish-rating">
-                                            5
-                                            <i class="uil uil-star"></i>
-                                        </div>
-                                        <div class="dish-title">
-                                            <h3 class="h3-title">Immunity Dish</h3>
-                                            <p>120 calories</p>
-                                        </div>
-                                        <div class="dish-info">
-                                            <ul>
-                                                <li>
-                                                    <p>Type</p>
-                                                    <b>Veg</b>
-                                                </li>
-                                                <li>
-                                                    <p>Persons</p>
-                                                    <b>2</b>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="dist-bottom-row">
-                                            <ul>
-                                                <li>
-                                                    <b>Rs. 159</b>
-                                                </li>
-                                                <li>
-                                                    <button class="dish-add-btn">
-                                                        <i class="uil uil-plus"></i>
-                                                    </button>
-                                                </li>
-                                            </ul>
+                                <div class="col-lg-3 col-md-6 mb-4">
+                                    <div class="blog-box" style="text-align: center;">
+                                        <div class="blog-img back-img" style="background-image: url(assets/images/blog/img4.png);"></div>
+                                        <div class="blog-text" style="text-align: center;">
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Programas Corporativos de Bienestar</a>
+                                            <p style="font-family: 'Montserrat', sans-serif;margin-bottom: 25px;">Soluciones integrales para empresas, enfocadas en mejorar la salud y productividad de los empleados mediante talleres, consultorías y programas específicos</p>
+                                            <a href="servicios.html#consultoria-coorporativo" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
+            
+            
+         
 
-            <section class="two-col-sec section">
+            <!-- <section class="two-col-sec section">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-5">
@@ -514,8 +381,8 @@
                         </div>
                     </div>
                 </div>
-            </section>
-
+            </section> -->
+<!-- 
             <section class="book-table section bg-light">
                 <div class="book-table-shape">
                     <img src="assets/images/table-leaves-shape.png" alt="">
@@ -609,168 +476,9 @@
                     </div>
                 </div>
 
-            </section>
+            </section> -->
 
-            <section class="our-team section">
-                <div class="sec-wp">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">Our Team</p>
-                                    <h2 class="h2-title">Meet our Chefs</h2>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/title-shape.svg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row team-slider">
-                            <div class="swiper-wrapper">
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/chef/c1.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Nilay Hirpara</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-youtube"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/chef/c2.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Ravi Kumawat</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-youtube"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/chef/c3.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Navnit Kumar</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-youtube"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/chef/c4.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Pranav Badgal</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-youtube"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 swiper-slide">
-                                    <div class="team-box text-center">
-                                        <div style="background-image: url(assets/images/chef/c5.jpg);"
-                                            class="team-img back-img">
-
-                                        </div>
-                                        <h3 class="h3-title">Priyotosh Dey</h3>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="uil uil-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-youtube"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-button-wp">
-                                <div class="swiper-button-prev swiper-button">
-                                    <i class="uil uil-angle-left"></i>
-                                </div>
-                                <div class="swiper-button-next swiper-button">
-                                    <i class="uil uil-angle-right"></i>
-                                </div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+      
 
             <section class="testimonials section bg-light">
                 <div class="sec-wp">
@@ -778,8 +486,8 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="sec-title text-center mb-5">
-                                    <p class="sec-sub-title mb-3">What they say</p>
-                                    <h2 class="h2-title">What our customers <span>say about us</span></h2>
+                         
+                                    <h2 class="h2-title" style="font-weight: bold;">Testimonios </h2>
                                     <div class="sec-title-shape mb-4">
                                         <img src="assets/images/title-shape.svg" alt="">
                                     </div>
@@ -789,7 +497,7 @@
                         <div class="row">
                             <div class="col-lg-5">
                                 <div class="testimonials-img">
-                                    <img src="assets/images/testimonial-img.png" alt="">
+                                    <img src="assets/images/testimonio.png" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-7">
@@ -889,7 +597,7 @@
                 </div>
             </section>
 
-            <section class="faq-sec section-repeat-img" style="background-image: url(assets/images/faq-bg.png);">
+            <!-- <section class="faq-sec section-repeat-img" style="background-image: url(assets/images/faq-bg.png);">
                 <div class="sec-wp">
                     <div class="container">
                         <div class="row">
@@ -943,9 +651,9 @@
                 </div>
 
             </section>
+ -->
 
-
-            <div class="bg-pattern bg-light repeat-img"
+            <!-- <div class="bg-pattern bg-light repeat-img"
                 style="background-image: url(assets/images/blog-pattern-bg.png);">
                 <section class="blog-sec section" id="blog">
                     <div class="sec-wp">
@@ -1035,106 +743,107 @@
                         </div>
                     </div>
                 </section>
-            </div>
+            </div> -->
+            <section class="newsletter-sec section pt-0">
+            </section>
+          <!-- footer starts  -->
+<footer class="site-footer" id="contact">
+    <div class="top-footer section" style="padding-top: 0px;padding-bottom: 0px;">
+        <div class="sec-wp" style="background-color:#96A57A ;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-info">
+                            <div class="footer-logo">
+                                <a href="index.html">
+                                    <img src="logo.png" alt="">
+                                </a>
+                            </div>
+                            <!-- <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, tenetur.</p> -->
+                    <div class="social-icon">
+    <ul>
+        <li>
+            <a href="#">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </li>
+    </ul>
+</div>
 
-            <!-- footer starts  -->
-            <footer class="site-footer" id="contact">
-                <div class="top-footer section">
-                    <div class="sec-wp">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="footer-info">
-                                        <div class="footer-logo">
-                                            <a href="index.html">
-                                                <img src="logo.png" alt="">
-                                            </a>
-                                        </div>
-                                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Mollitia, tenetur.
-                                        </p>
-                                        <div class="social-icon">
-                                            <ul>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-instagram"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-github-alt"></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        <i class="uil uil-youtube"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="footer-flex-box">
-                                        <div class="footer-table-info">
-                                            <h3 class="h3-title">open hours</h3>
-                                            <ul>
-                                                <li><i class="uil uil-clock"></i> Mon-Thurs : 9am - 22pm</li>
-                                                <li><i class="uil uil-clock"></i> Fri-Sun : 11am - 22pm</li>
-                                            </ul>
-                                        </div>
-                                        <div class="footer-menu food-nav-menu">
-                                            <h3 class="h3-title">Links</h3>
-                                            <ul class="column-2">
-                                                <li>
-                                                    <a href="#home" class="footer-active-menu">Home</a>
-                                                </li>
-                                                <li><a href="#about">About</a></li>
-                                                <li><a href="#menu">Menu</a></li>
-                                                <li><a href="#gallery">Gallery</a></li>
-                                                <li><a href="#blog">Blog</a></li>
-                                                <li><a href="#contact">Contact</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="footer-menu">
-                                            <h3 class="h3-title">Company</h3>
-                                            <ul>
-                                                <li><a href="#">Terms & Conditions</a></li>
-                                                <li><a href="#">Privacy Policy</a></li>
-                                                <li><a href="#">Cookie Policy</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="footer-flex-box">
+                            <div class="footer-table-info">
+                                <h3 class="h3-title">Horarios</h3>
+                                <ul>
+                                    <li><i class="uil uil-clock"></i> Lunes-Viernes : 9am - 22pm</li>
+                                    <li><i class="uil uil-clock"></i> Sábado-Domingo : 11am - 22pm</li>
+                                </ul>
+                            </div>
+                            <div class="footer-menu food-nav-menu">
+                                <h3 class="h3-title">Páginas</h3>
+                                <ul class="column-2">
+                                    <li>
+                                        <a href="#home" class="footer-active-menu">
+                                            <i class="uil uil-home"></i> Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="especialistas.html">
+                                            <i class="uil uil-user-md"></i> Especialistas
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="servicios.html">
+                                            <i class="uil uil-user-md"></i> Servicios
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="contacto.html">
+                                            <i class="uil uil-envelope"></i> Contacto
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="footer-menu">
+                                <h3 class="h3-title">Información</h3>
+                                <ul>
+                                    <li><a href="#"><i class="uil uil-file-alt"></i> Términos</a></li>
+                             
+                                    <!-- <li><a href="#"><i class="uil uil-cookie"></i> Cookie Policy</a></li> -->
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bottom-footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 text-center">
-                                <div class="copyright-text">
-                                    <p>Copyright &copy; 2021 <span class="name">TechieCoder.</span>All Rights Reserved.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="scrolltop"><i class="uil uil-angle-up"></i></button>
-                    </div>
-                </div>
-            </footer>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer ends -->
+
 
 
 
         </div>
     </div>
 
-
+    <a href="https://wa.me/908500961" class="whatsapp-float" target="_blank">
+        <i class="uil uil-whatsapp"></i>
+    </a>
+    
 
 
 
