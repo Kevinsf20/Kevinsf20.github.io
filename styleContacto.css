@@ -35,6 +35,36 @@ font-family: 'Poppins', sans-serif; */
     text-decoration: underline; /* Subraya el texto al hacer hover */
     text-decoration-color: #8B4513; /* Color marrón para el subrayado */
 }
+/* Submenu estilos para pegar los subitems a Servicios */
+.servicios {
+    position: relative;
+}
+
+.servicios:hover .submenu {
+    display: block; /* Muestra el submenú al pasar el mouse sobre "Servicios" */
+}
+
+.submenu {
+    position: absolute;
+    top: 90%; /* Ajusta el submenú más arriba cerca del "Servicios" */
+    left: 0;
+    margin-top: -5px; /* Puedes ajustar este margen para acercarlo aún más */
+    padding: 0;
+    background-color: white;
+    display: none; /* Oculta el submenú por defecto */
+    z-index: 1000; /* Asegura que el submenú esté por encima de otros elementos */
+}
+
+.submenu li {
+    padding: 5px 10px; /* Ajusta el padding de los subitems para que estén más compactos */
+    margin: 0;
+}
+
+.submenu li a {
+    display: block;
+    padding: 5px 10px; /* Reduce el padding interior de los enlaces */
+}
+
 
 /* whstsap*/
 .whatsapp-float {
@@ -202,6 +232,8 @@ body {
 .specialist-section {
     padding: 60px 0;
     background-color: #f8f7f5;
+    padding-bottom: 0px;
+
 }
 
 .specialist-section .text-section h1 {

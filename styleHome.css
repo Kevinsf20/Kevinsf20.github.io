@@ -109,8 +109,7 @@ font-family: 'Poppins', sans-serif; */
 .fit-banner {
     background-image: url('assets/images/fondo5.jpg'); /* Ruta de tu imagen de fondo */
     background-size: cover; /* La imagen de fondo cubre todo el fondo */
-    /* background-position: center;  */
-    /* Centra la imagen de fondo */
+    background-position: 44% center; /* Desplaza la imagen un poco hacia la izquierda (40% en lugar de 50%) */
     background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
     padding: 100px 0; /* Ajusta el padding superior e inferior */
     position: relative;
@@ -118,6 +117,7 @@ font-family: 'Poppins', sans-serif; */
     display: flex;
     align-items: center; /* Centra verticalmente el contenido */
 }
+
 
 .text-section {
     color: white; /* Color del texto */
@@ -1900,10 +1900,10 @@ p {
 .testimonials-img img {
     position: absolute;
     top: 60px;
-    right: -200px;
+    right: -55px;
     /* width: calc(100% + 5vw); */
     max-width: initial;
-    width: 792px;
+    width: 666px;
 }
 
 .testimonials-box {
