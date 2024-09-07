@@ -2,6 +2,42 @@
 /* font-family: 'Playfair Display', serif;
 font-family: 'Poppins', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+/* Nueva clase para subrayado marrón al pasar el mouse */
+.underline-hover a {
+    position: relative;
+    display: inline-block;
+    text-decoration: none; /* Quita cualquier subrayado predeterminado */
+}
+
+.underline-hover a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px; /* Grosor de la línea */
+    bottom: -5px; /* Posición de la línea debajo del texto */
+    left: 0;
+    background-color: #8B4513; /* Color marrón */
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.underline-hover a:hover::after {
+    visibility: visible;
+    width: 100%; /* Subraya todo el ancho del texto */
+}
+/* Nueva clase para subrayado marrón sin efecto deslizante */
+.underline-hover a {
+    text-decoration: none; /* Sin subrayado por defecto */
+}
+
+.underline-hover a:hover {
+    text-decoration: underline; /* Subraya el texto al hacer hover */
+    text-decoration-color: #8B4513; /* Color marrón para el subrayado */
+}
+
+
 /* whstsap*/
 .whatsapp-float {
     position: fixed;
@@ -376,12 +412,12 @@ ul {
     border-radius: 30px;
 }
 
+
 .main-navigation .menu li a:hover, .main-navigation .menu li .active-menu, .main-navigation .menu .sub-menu li .active-sub-menu {
     color: #7CA3A3;
-    background: #f3f3f5;
-    box-shadow: inset 8px 8px 12px #e2e2e2, inset -8px -8px 12px #ffffff;
+    /* background: #f3f3f5;
+    box-shadow: inset 8px 8px 12px #e2e2e2, inset -8px -8px 12px #ffffff; */
 }
-
 .header-right {
     margin-left: 40px;
     display: flex;

@@ -1900,9 +1900,10 @@ p {
 .testimonials-img img {
     position: absolute;
     top: 60px;
-    right: 30px;
-    width: calc(100% + 5vw);
+    right: -200px;
+    /* width: calc(100% + 5vw); */
     max-width: initial;
+    width: 792px;
 }
 
 .testimonials-box {
@@ -1948,6 +1949,20 @@ p {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+.testimonials-box-text p {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.testimonials-box:hover .testimonials-box-text p {
+    -webkit-line-clamp: unset;
+    max-height: none;
+    overflow: visible;
 }
 
 .star-rating-wp {
