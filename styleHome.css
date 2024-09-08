@@ -48,7 +48,7 @@ font-family: 'Poppins', sans-serif; */
 }
 
 .custom-banner-text span {
-    display: block;
+    /* display: block; */
 }
 /* Nueva clase para subrayado marrón al pasar el mouse */
 .underline-hover a {
