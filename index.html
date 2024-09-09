@@ -26,7 +26,31 @@
 
 
 
-<script>document.querySelectorAll('.header-menu li > a').forEach(function(menuItem) {
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll(".section-to-animate");
+
+    // Función que verifica si el elemento está en el viewport
+    function checkVisibility() {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+            // Si la sección está visible, añadimos la clase "section-visible"
+            if (rect.top <= windowHeight - 100) { // Ajustar el valor "100" si es necesario
+                section.classList.add("section-visible");
+            }
+        });
+    }
+
+    // Llamamos a la función en scroll y en la carga de la página
+    window.addEventListener("scroll", checkVisibility);
+    window.addEventListener("load", checkVisibility);
+});
+
+
+document.querySelectorAll('.header-menu li > a').forEach(function(menuItem) {
     menuItem.addEventListener('click', function(e) {
         const submenu = this.nextElementSibling;
         if (submenu && submenu.classList.contains('submenu')) {
@@ -84,9 +108,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 </script>
+<link rel="icon" href="ico.png" type="image/png">
+
 <body class="body-fixed">
     <!-- start of header  -->
-    
     <header class="site-header" style="background-color: white;">
         <div class="container">
             <div class="row">
@@ -107,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <li class="servicios">
                                     <a href="javascript:void(0);">Servicios</a>
                                     <ul class="submenu">
-                                        <li class="underline-hover"><a href="servicios.html#consultoria-nutricional" style="width:121PX">Consultoria nutricional</a></li>
+                                        <li class="underline-hover"><a href="servicios.html#consultoria-nutricional" style="width:121PX">Consultoría nutricional</a></li>
                                         <li class="underline-hover"><a href="servicios.html#consultoria-psicologia" style="width:121PX">Consejería psicológica</a></li>
                                         <li class="underline-hover"><a href="servicios.html#consultoria-Entrenamiento" style="width:141PX">Entrenamiento personalizado</a></li>
                                         <li class="underline-hover"><a href="servicios.html#consultoria-coorporativo" style="width:121PX">Corporativos</a></li>
@@ -128,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div id="viewport">
         <div id="js-scroll-content">
     
-            <section class="fit-banner" id="fit-section">
+            <section class="fit-banner section-to-animate section-from-left" id="fit-section">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-6">
@@ -148,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             
 
-            <section class="services-section" style="font-family: 'Montserrat', sans-serif;">
+            <section class="services-section section-to-animate section-from-right" style="font-family: 'Montserrat', sans-serif;">
                 <div class="container-fluid"> <!-- Cambié a container-fluid para eliminar el margen lateral -->
                     <div class="row no-gutters align-items-center"> <!-- Agregué no-gutters para eliminar espacios entre columnas -->
                         <div class="col-lg-6 text-left"> <!-- Cambié a text-left para asegurar que el contenido esté alineado a la izquierda -->
@@ -170,8 +195,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
          
             
- <!-- Sección de Beneficios para tu Empresa -->
-<section class="beneficios-empresa" style="padding: 50px 15px; background-color: #F8F7F5;">
+<!-- Sección de Beneficios para tu Empresa -->
+<section class="beneficios-empresa section-to-animate section-from-left" style="padding: 50px 15px; background-color: #F8F7F5;">
     <div class="container">
         <h2 style="font-weight: 1000; text-align: left; margin-bottom: 40px;">¿Por qué elegir nuestro servicios?</h2>
 
@@ -184,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="beneficio-box" style="background-color: #fff; color: #333; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
                             <i class="fas fa-user-cog" style="vertical-align: middle; margin-right: 8px;"></i>
                             <strong>Personalización Total</strong>
-                            <p>Cada plan que diseñamos está hecho a medida, considerando tus metas, estilo de vida y necesidades individuales o corporativas.</p>
+                            <p style="text-align: justify;">Cada plan que diseñamos está hecho a medida, considerando tus metas, estilo de vida y necesidades individuales o corporativas.</p>
                         </div>
                     </div>
 
@@ -193,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="beneficio-box" style="background-color: #fff; color: #333; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
                             <i class="fas fa-users" style="vertical-align: middle; margin-right: 8px;"></i>
                             <strong>Soporte Multidisciplinario</strong>
-                            <p>Con el respaldo de nutricionistas, psicólogos y entrenadores, te ofrecemos un cuidado completo y coordinado.</p>
+                            <p style="text-align: justify;">Con el respaldo de nutricionistas, psicólogos y entrenadores, te ofrecemos un cuidado completo y coordinado.</p>
                         </div>
                     </div>
 
@@ -202,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="beneficio-box" style="background-color: #fff; color: #333; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
                             <i class="fas fa-flask" style="vertical-align: middle; margin-right: 8px;"></i>
                             <strong>Método Basado en Evidencia</strong>
-                            <p>Nos guiamos por la ciencia para asegurar que cada plan tenga el máximo impacto positivo en tu vida.</p>
+                            <p style="text-align: justify;">Nos guiamos por la ciencia para asegurar que cada plan tenga el máximo impacto positivo en tu vida.</p>
                         </div>
                     </div>
 
@@ -211,34 +236,54 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="beneficio-box" style="background-color: #fff; color: #333; padding: 20px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
                             <i class="fas fa-leaf" style="vertical-align: middle; margin-right: 8px;"></i>
                             <strong>Transformación Duradera</strong>
-                            <p>No solo buscamos cambios temporales, sino mejorar tu bienestar a largo plazo con un enfoque holístico.</p>
+                            <p style="text-align: justify;">No solo buscamos cambios temporales, sino mejorar tu bienestar a largo plazo con un enfoque holístico.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Imagen relacionada -->
-            <div class="col-lg-6" style="padding-left: 0px;">
-                <img src="assets/images/services/img_consulta.jpg" alt="Beneficios para tu Empresa" class="img-fluid" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
+            <div class="col-lg-6 image-container" style="padding-left: 0px; padding-right: 0px;">
+                <img src="assets/images/services/img_consulta.jpg" alt="Beneficios para tu Empresa" class="img-fluid" style="width: 90%; height: auto; border-radius: 10px; box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);">
             </div>
         </div>
     </div>
 </section>
 
+<style>
+    /* Aplicar margen izquierdo solo en pantallas de laptop y superiores */
+    @media (min-width: 992px) {
+        .image-container img {
+            margin-left: 30px;
+            max-height: 97%;
+        }
+    }
+
+    /* Centrar la imagen en pantallas pequeñas (celulares) */
+    @media (max-width: 767px) {
+        .image-container img {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            max-height: 100%;
+        }
+    }
+</style>
+
+
+
 
 
 
             <div class="bg-pattern bg-light repeat-img" style="background-image: url(assets/images/blog-pattern-bg.png);">
-                <section class="blog-sec section" id="blog">
+                <section class="blog-sec section section-to-animate section-from-right" id="blog">
                     <div class="sec-wp">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="sec-title text-center mb-5">
-                                        <h2 class="h2-title" style="font-weight: bold;">Servicios que Ofrecemos</h2>
-                                        <div class="sec-title-shape mb-4">
-                                            <img src="assets/images/title-shape.svg" alt="">
-                                        </div>
+                                        <h2 class="h2" style="font-weight: bold;font-size: 38px;">Servicios que ofrecemos</h2>
+                                   
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="blog-box" style="text-align: center; font-family: 'Montserrat', sans-serif;">
                                         <div class="blog-img back-img" style="background-image: url(assets/images/blog/img1.png);"></div>
                                         <div class="blog-text" style="text-align: center;">
-                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Consultas Nutricionales</a>
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Consultas nutricionales</a>
                                             <p style="font-family: 'Montserrat', sans-serif; margin-bottom: 47px;margin-left: 0px;">Planes personalizados para tus objetivos: mejora tu rendimiento deportivo, trata enfermedades, cuida tu alimentación en la gestación, la de tus hijos o alcanza metas estéticas.</p>
                                             <a href="servicios.html#consultoria-nutricional" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
@@ -259,7 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="blog-box" style="text-align: center;">
                                         <div class="blog-img back-img" style="background-image: url(assets/images/blog/img2.png);"></div>
                                         <div class="blog-text" style="text-align: center;">
-                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Psicología y Bienestar Emocional</a>
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Psicología y bienestar emocional</a>
                                             <p style="font-family: 'Montserrat', sans-serif; margin-bottom: 25px;margin-left: 0px;">Apoyo emocional y mental mediante terapias individuales o grupales, con programas para mejorar tu bienestar y manejar el estrés, con especialistas en la materia</p>
                                             <a href="servicios.html#consultoria-psicologia" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
@@ -269,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="blog-box" style="text-align: center;">
                                         <div class="blog-img back-img" style="background-image: url(assets/images/blog/img3.png);"></div>
                                         <div class="blog-text" style="text-align: center;">
-                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Programa De Entrenamiento Personalizado</a>
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Programa de entrenamiento personalizado</a>
                                             <p style="font-family: 'Montserrat', sans-serif;margin-bottom: 57px;margin-left: 0px;">Programas físicos que complementan tu plan nutricional, adaptados a tu nivel y objetivos, desde la pérdida de peso hasta la ganancia muscular</p>
                                             <a href="servicios.html#consultoria-Entrenamiento" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
@@ -279,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="blog-box" style="text-align: center;">
                                         <div class="blog-img back-img" style="background-image: url(assets/images/blog/img4.png);"></div>
                                         <div class="blog-text" style="text-align: center;">
-                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Programas Corporativos de Bienestar</a>
+                                            <a href="#" class="h4-title" style="text-align: center;font-family: 'Montserrat', sans-serif;">Programas corporativos de bienestar</a>
                                             <p style="font-family: 'Montserrat', sans-serif;margin-bottom: 25px;">Soluciones integrales para empresas, enfocadas en mejorar la salud y productividad de los empleados mediante talleres, consultorías y programas específicos</p>
                                             <a href="servicios.html#consultoria-coorporativo" class="sec-btn" style="font-size: 13px;">MÁS INFORMACIÓN</a>
                                         </div>
@@ -295,16 +340,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
       
-            <section class="testimonials section bg-light">
+            <section class="testimonials section bg-light section-to-animate section-from-left">
                 <div class="sec-wp">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="sec-title text-center mb-5">
                                     <h2 class="h2-title" style="font-weight: bold;">Testimonios </h2>
-                                    <div class="sec-title-shape mb-4">
-                                        <img src="assets/images/title-shape.svg" alt="">
-                                    </div>
+                                  
                                 </div>
                             </div>
                         </div>
@@ -442,10 +485,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="footer-flex-box">
                             <div class="footer-table-info">
                                 <h3 class="h3-title">Horarios</h3>
-                                <ul>
-                                    <li><i class="uil uil-clock"></i> Lunes-Viernes : 9am - 22pm</li>
-                                    <li><i class="uil uil-clock"></i> Sábado-Domingo : 11am - 22pm</li>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li><i class="uil uil-clock" style="margin-right: 8px;"></i><strong>Lunes - Viernes:</strong> 8:00 AM - 8:00 PM</li>
+                                    <li><i class="uil uil-clock" style="margin-right: 8px;"></i><strong>Sábado:</strong> 8:00 AM - 6:00 PM</li>
+                                    <li><i class="uil uil-clock" style="margin-right: 8px;"></i><strong>Domingo:</strong> 9:00 AM - 2:00 PM</li>
                                 </ul>
+                                
                             </div>
                             <div class="footer-menu food-nav-menu">
                                 <h3 class="h3-title">Páginas</h3>
@@ -476,10 +521,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <h3 class="h3-title">Información</h3>
                                 <ul>
                                     <li><a href="terminos.html"><i class="uil uil-file-alt"></i> Términos</a></li>
-                             
+                                    <li><a href="https://maps.app.goo.gl/sPwTqMBsYKbBnfCe9" target="_blank"><i class="uil uil-map-marker"></i> Av. Brasil 2730, Pueblo Libre, Lima - Perú</a></li>
                                     <!-- <li><a href="#"><i class="uil uil-cookie"></i> Cookie Policy</a></li> -->
                                 </ul>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

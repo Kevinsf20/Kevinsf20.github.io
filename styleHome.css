@@ -3,6 +3,31 @@
 font-family: 'Poppins', sans-serif; */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
+/* Estado inicial de las secciones que vienen de la izquierda */
+.section-from-left {
+    opacity: 0;
+    transform: translateX(-10%); /* Movimiento más sutil */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Transición más lenta para suavidad */
+}
+
+/* Estado inicial de las secciones que vienen de la derecha */
+.section-from-right {
+    opacity: 0;
+    transform: translateX(10%); /* Movimiento más sutil */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Transición más lenta para suavidad */
+}
+
+/* Estado final cuando el elemento es visible (desde la izquierda) */
+.section-visible.section-from-left {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Estado final cuando el elemento es visible (desde la derecha) */
+.section-visible.section-from-right {
+    opacity: 1;
+    transform: translateX(0);
+}
 
 /* Nueva clase para subrayado marrón al pasar el mouse */
 .underline-hover a {
@@ -2040,7 +2065,7 @@ p {
 /* *************** */
 
 .blog-text .h4-title {
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     margin-bottom: 15px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -2297,6 +2322,8 @@ p {
 
 
 /* **************** responsiveness ***************** */
+
+
 
 @media (min-width: 2100px) {
     .container {
